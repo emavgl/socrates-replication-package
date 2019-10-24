@@ -1,0 +1,9 @@
+{
+  "name": "Test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "truffle-core": "^4.1.12"
+  }
+}

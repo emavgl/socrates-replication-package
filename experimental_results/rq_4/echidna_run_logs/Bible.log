@@ -1,0 +1,7 @@
+"Analyzing contract: Bible.sol:Bible"
+━━━ Bible.sol ━━━
+  ✗ "echidna_invariant_I9" failed after 8 tests and 4 shrinks.
+  
+    │ Call sequence: approve(10,0);
+  
+  ✗ 1 failed.

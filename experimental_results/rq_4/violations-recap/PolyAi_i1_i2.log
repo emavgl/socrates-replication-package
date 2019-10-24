@@ -1,0 +1,12 @@
+"Analyzing contract: 0x5121e348e897daef1eef23959ab290e5557cf274-PolyAi.sol:PolyAi"
+━━━ 0x5121e348e897daef1eef23959ab290e5557cf274-PolyAi.sol ━━━
+  ✗ "echidna_invariant_I2" failed after 2 tests and 4 shrinks.
+  
+    │ Call sequence: mintToken(10,1);
+  
+  ✗ "echidna_invariant_I1" failed after 7500 tests and 100 shrinks.
+  
+    │ Call sequence: mintToken(1,45875264144031984634463933974633858851726346282128951725159069355412548366815);
+    │                mintToken(1,69916825093284210789107051034054049001543638383511617865967562469123188682014);
+  
+  ✗ 2 failed.

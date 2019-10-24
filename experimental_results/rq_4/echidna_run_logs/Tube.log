@@ -1,0 +1,7 @@
+Tube.sol:265:5: Warning: Function state mutability can be restricted to view
+    function echidna_invariant_I2() public returns (bool) {
+    ^ (Relevant source part starts here and spans across multiple lines).
+"Analyzing contract: Tube.sol:Tube"
+━━━ Tube.sol ━━━
+  ✓ "echidna_invariant_I2" passed 10000 tests.
+  ✓ 1 succeeded.

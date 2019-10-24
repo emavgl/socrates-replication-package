@@ -1,0 +1,4 @@
+"Analyzing contract: JAAGCoin.sol:JAAGCoin"
+━━━ JAAGCoin.sol ━━━
+  ✓ "echidna_invariant_I6" passed 10000 tests.
+  ✓ 1 succeeded.

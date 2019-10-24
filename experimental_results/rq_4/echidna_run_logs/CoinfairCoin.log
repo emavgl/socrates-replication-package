@@ -1,0 +1,8 @@
+"Analyzing contract: CoinfairCoin.sol:CoinfairCoin"
+━━━ CoinfairCoin.sol ━━━
+  ✗ "echidna_invariant_I8" failed after 52 tests and 100 shrinks.
+  
+    │ Call sequence: addAdmin(7);
+    │                transfer(7,1260832587723);
+  
+  ✗ 1 failed.

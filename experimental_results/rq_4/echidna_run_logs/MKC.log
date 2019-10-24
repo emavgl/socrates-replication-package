@@ -1,0 +1,4 @@
+"Analyzing contract: MKC.sol:MKC"
+━━━ MKC.sol ━━━
+  ✓ "echidna_invariant_I7" passed 10000 tests.
+  ✓ 1 succeeded.

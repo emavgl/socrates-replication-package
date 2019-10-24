@@ -1,0 +1,7 @@
+"Analyzing contract: 0x34094acd5d62f0b9a17aeabf3c6992677ed5484b-DNCEQUITY.sol:DNCEQUITY"
+━━━ 0x34094acd5d62f0b9a17aeabf3c6992677ed5484b-DNCEQUITY.sol ━━━
+  ✗ "echidna_invariant_I1" failed after 79 tests and 96 shrinks.
+  
+    │ Call sequence: burnDNC(10,1157920892373161954235709850086879078532699846656405640394576);
+  
+  ✗ 1 failed.

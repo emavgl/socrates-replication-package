@@ -1,0 +1,12 @@
+━━━ 0x0b76544f6c413a555f309bf76260d1e02377c02a-INT.sol ━━━
+  ✗ "echidna_invariant_I9" failed after 6 tests and 4 shrinks.
+  
+    │ Call sequence: approve(10,0);
+  
+  ✓ "echidna_invariant_I2" passed 10000 tests.
+  ✗ "echidna_invariant_I1" failed after 300 tests and 100 shrinks.
+  
+    │ Call sequence: mintToken(10,5015776498928573057030244307165944969798691534881752074704183741591518195414);
+    │                mintToken(7,110776312738387622366540740701521962883471293130758811964753593796617972997655);
+  
+  ✗ 2 failed, 1 succeeded.

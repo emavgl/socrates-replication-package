@@ -1,0 +1,45 @@
+
+# ===========
+# =========== END OF AUTOMATICALLY GENERATED CODE
+# ===========
+
+
+def preprocess(z3result_dic):
+    variables = z3result_dic['variables']
+
+    arrays = {}
+    parsedVariables = {}
+
+    for variable in variables:
+        name = variable['name']
+        value = variable['value']
+
+        if '__' in name:
+            # is part of IntVector
+            base_name = name.split('__')[0]
+
+            if base_name not in arrays:
+                arrays[base_name] = []
+
+            # invalid values not skipped here
+            arrays[base_name].append((name, value))
+        else:
+            parsedVariables[name] = value
+
+    for key, l in arrays.items():
+        ordered_list_by_number = sorted(l, key = lambda tup: int(tup[0].split('__')[1]))
+        arrays[key] = [x[1] for x in ordered_list_by_number]
+
+    return {'sat': z3result_dic['sat'], **arrays, **parsedVariables}
+
+if solver.check():
+    m = solver.model()
+    vs = [(v,m[v]) for v in m if "Lambda" not in str(m[v])]
+    body = '\n'.join(['\t\t{{"name": "{}", "value": "{}"}},'.format(k,v) for (k,v) in vs])[:-1]
+    all_dic = '{{\n\t"sat": true,\n\t"variables":[\n{}\n\t]\n}}'.format(body)
+else:
+    all_dic = '{{\n\t"sat": false,\n\t"variables":[]\n}}'
+
+json_result = json.loads(all_dic)
+output_dic = preprocess(json_result)
+print(json.dumps(output_dic))

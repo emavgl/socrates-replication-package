@@ -1,0 +1,111 @@
+import json
+import web3
+from z3 import *
+from web3 import Web3, HTTPProvider, TestRPCProvider
+import itertools
+import argparse
+
+# === CONSTANTS ===
+max_array_len = 32
+
+# === HELPER FUNCTIONS
+def max_uint(bits):
+    return 2**bits
+
+def max_int(bits):
+    return 2**(bits-1) - 1
+
+def min_int(bits):
+    return - 2**(bits-1)
+
+def u_is_overflow(value, numberOfBits):
+    return Or(value > (2**numberOfBits) - 1, value < 0)
+
+def u_overflow_value(value, numberOfBits):
+    return value % 2**numberOfBits
+
+def is_overflow(value, numberOfBits):
+    return Or(value > 2**(numberOfBits-1) - 1, value < - 2**(numberOfBits-1))
+
+def overflow_value(value, numberOfBits):
+    return (value + 2**(numberOfBits-1)) % 2**numberOfBits - 2**(numberOfBits-1)
+
+
+def get_state_variable(contract_instance, base, *args):
+    f = contract_instance.get_function_by_name(base)
+    return f(*args).call()
+
+def get_contract_instance(w3, contract_address, contract_abi):
+    return w3.eth.contract(
+        address=contract_address,
+        abi=contract_abi,
+)
+
+def str2bool(v):
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+
+parser = argparse.ArgumentParser(description='Run Z3 Solver')
+parser.add_argument('-d', '--distinct', type=str2bool, help='Force distinct values for IntVectors', default=0, choices=[0,1])
+parser.add_argument('-b', '--blockchain', help='Blockchain address', default="http://localhost:8545")
+requiredNamed = parser.add_argument_group('required named arguments')
+requiredNamed.add_argument('-c', '--contract', help='Target contract address', required=True)
+requiredNamed.add_argument('-a', '--account', help='Account address', required=True)
+requiredNamed.add_argument('-bn', '--bots', help='Number of bots', required=True)
+requiredNamed.add_argument('-ta', '--artifacts', help="Contract's Truffle artifacts path", required=True)
+
+try:
+    args = parser.parse_args()
+except:
+    parser.print_help()
+    sys.exit(-1)
+
+try:
+    w3 = Web3(Web3.HTTPProvider(args.blockchain))
+    ganache_addresses = w3.eth.accounts
+except:
+    print("Error while connecting to the blockchain at ", args.blockchain)
+    exit(-1)
+
+artifacts_path = args.artifacts
+contract_address = Web3.toChecksumAddress(args.contract)
+user_address = Web3.toChecksumAddress(args.account)
+null_address = Web3.toChecksumAddress("0x0000000000000000000000000000000000000000")
+total_addresses = ganache_addresses + [contract_address, null_address]
+this_balance = w3.eth.getBalance(contract_address)
+this = total_addresses.index(contract_address)
+null_address_index = len(total_addresses) - 1
+
+number_of_bots = int(args.bots)
+accounts_concrete = total_addresses[:number_of_bots]
+accounts_len = number_of_bots
+
+try:
+    user_address_index = accounts_concrete.index(user_address)
+except ValueError:
+    print("specified user address", args.account," is not in the list of the accounts")
+    print(accounts_concrete)
+    exit(-1)
+
+with open(artifacts_path, 'r') as r:
+    artifacts = r.read()
+    contract_abi = json.loads(artifacts)['abi']
+
+# Initialize contract
+contract_instance = get_contract_instance(w3, contract_address, contract_abi)
+
+solver = Solver()
+
+msg_sender, msg_value, msg_gas = Ints('msg_sender msg_value msg_gas')
+solver.add(msg_value >= 0)
+solver.add(msg_gas >= 0)
+solver.add(msg_sender >= 0, msg_sender < accounts_len)
+
+# ===========
+# =========== AUTOMATICALLY GENERATED CODE
+# ===========
+

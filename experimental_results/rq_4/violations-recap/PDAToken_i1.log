@@ -1,0 +1,8 @@
+"Analyzing contract: ./0xf270f361edca19f7063184b0e6b4f264468ecbc1-PDAToken.sol:PDAToken"
+━━━ ./0xf270f361edca19f7063184b0e6b4f264468ecbc1-PDAToken.sol ━━━
+  ✗ "echidna_invariant_I1" failed after 29 tests and 100 shrinks.
+  
+    │ Call sequence: transfer(2,4165265777360163257722);
+    │                transferFrom(2,10,904);
+  
+  ✗ 1 failed.

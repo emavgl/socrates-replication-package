@@ -1,0 +1,9 @@
+"Analyzing contract: 0xe7d7b37e72510309db27c460378f957b1b04bd5d-EMPR.sol:EMPR"
+━━━ 0xe7d7b37e72510309db27c460378f957b1b04bd5d-EMPR.sol ━━━
+  ✓ "echidna_invariant_I2" passed 10000 tests.
+  ✗ "echidna_invariant_I1" failed after 500 tests and 100 shrinks.
+  
+    │ Call sequence: MintToken(8574088250702772627672214084562180519713758426268805259388571755586738908358);
+    │                MintToken(107218000986613422795898770924125727333556226239371259474861791792618404326930);
+  
+  ✗ 1 failed, 1 succeeded.

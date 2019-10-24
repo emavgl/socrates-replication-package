@@ -1,0 +1,7 @@
+version: '2'
+services:
+  socrates:
+    build: .
+    volumes:
+      - ./inputs:/usr/src/app/inputs
+      - ./output:/usr/src/app/output

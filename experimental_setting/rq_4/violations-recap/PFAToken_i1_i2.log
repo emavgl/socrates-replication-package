@@ -1,0 +1,11 @@
+"Analyzing contract: 0xfc0555aca4a78be9668993b39739d1d2616c75b0-PFAToken.sol:PFAToken"
+━━━ 0xfc0555aca4a78be9668993b39739d1d2616c75b0-PFAToken.sol ━━━
+  ✗ "echidna_invariant_I2" failed after 9 tests and 24 shrinks.
+  
+    │ Call sequence: mint(10,1);
+  
+  ✗ "echidna_invariant_I1" failed after 36 tests and 45 shrinks.
+  
+    │ Call sequence: send(10,1000000000000000000000000001);
+  
+  ✗ 2 failed.

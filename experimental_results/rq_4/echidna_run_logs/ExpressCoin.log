@@ -1,0 +1,15 @@
+➜  new-analysis git:(master) ✗ /home/eviglianisi/.local/bin/echidna-test-old ExpressCoin.sol ExpressCoin --config="config.yaml"
+ExpressCoin.sol:47:24: Warning: Using contract member "balance" inherited from the address type is deprecated. Convert the contract to "address" type to access the member, for example use "address(contract).balance" instead.
+        owner.transfer(this.balance);
+                       ^----------^
+ExpressCoin.sol:87:5: Warning: Function state mutability can be restricted to view
+    function echidna_invariant_I1() public returns (bool) {
+    ^ (Relevant source part starts here and spans across multiple lines).
+"Analyzing contract: ExpressCoin.sol:ExpressCoin"
+━━━ ExpressCoin.sol ━━━
+  ✗ "echidna_invariant_I1" failed after 1100 tests and 100 shrinks.
+  
+    │ Call sequence: mint(10,53211105279612541599580901956603750247213067178167439037448781105824667609221);
+    │                mint(5,62580983957703653823990083052084157606056917487473125009422092434063771207115);
+  
+  ✗ 1 failed.

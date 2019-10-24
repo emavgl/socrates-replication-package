@@ -1,0 +1,7 @@
+"Analyzing contract: DNCEQUITY.sol:DNCEQUITY"
+━━━ DNCEQUITY.sol ━━━
+  ✗ "echidna_invariant_I1" failed after 80 tests and 100 shrinks.
+  
+    │ Call sequence: burnDNC(10,1157920892373161954235709850086879078532699846656405640394580);
+  
+  ✗ 1 failed.

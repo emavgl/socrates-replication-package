@@ -1,0 +1,7 @@
+"Analyzing contract: 0x14fb4c93fe461ec3f9f22b61ab7030f258867969-Amorcoin.sol:Amorcoin"
+━━━ 0x14fb4c93fe461ec3f9f22b61ab7030f258867969-Amorcoin.sol ━━━
+  ✗ "echidna_invariant_I2" failed after 13 tests and 30 shrinks.
+  
+    │ Call sequence: getToken(1);
+  
+  ✗ 1 failed.
