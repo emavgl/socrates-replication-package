@@ -1,4 +1,4 @@
-# Kore-Cluster Socrates Experiments
+# Socrates replication package
 
 This repository contains *inputs*, *configurations*, *results* and *analysis* for SoCRATES assestment on real-deployed smart contracts collected from the official Ethereum blockchain.
 
